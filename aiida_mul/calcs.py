@@ -1,4 +1,8 @@
-from aiida.orm.job import JobCalculation
+from aiida.orm.calculation.job import JobCalculation
+from aiida.common.utils import classproperty
+from aiida.orm import DataFactory
+
+ParameterData = DataFactory('parameter')
 
 class MultiplyCalculation(JobCalculation):
     '''add two numbers (Test plugin for new plugin system)'''
