@@ -10,23 +10,23 @@ class MultiplyCalculation(JobCalculation):
         self._OUTPUT_FILE_NAME = 'out.json'
         self._default_parser = 'mul'
 
-     @classproperty
-     def _use_methods(cls):
+    @classproperty
+    def _use_methods(cls):
         """
         Additional use_* methods for the namelists class.
         """
         retdict = JobCalculation._use_methods
         retdict.update({
             "parameters": {
-               'valid_types': ParameterData,
-               'additional_parameter': None,
-               'linkname': 'parameters',
-               'docstring': ("Use a node that specifies the input parameters ")
-               },
+                'valid_types': ParameterData,
+                'additional_parameter': None,
+                'linkname': 'parameters',
+                'docstring': ("Use a node that specifies the input parameters ")
+                },
             })
         return retdict
 
-    def _prepare_for_submission(self, tempfolder, inputdict):                      def _prepare_for_submission(self,tempfolder, inputdict):
+def _prepare_for_submission(self, tempfolder, inputdict):
         """
         This is the routine to be called when you want to create
         the input files and related stuff with a plugin.
