@@ -29,8 +29,8 @@ def main(codename, computer_name, send):
     parameters = ParameterData(dict={'x1':2,'x2':3})
 
     calc = code.new_calc()
-    calc.label = "Test sum"
-    calc.description = "Test calculation with the sum code"
+    calc.label = "Test mul"
+    calc.description = "Test calculation with the aiida_mul code"
     calc.set_max_wallclock_seconds(30*60) # 30 min
     calc.set_computer(computer)
     calc.set_withmpi(False)
