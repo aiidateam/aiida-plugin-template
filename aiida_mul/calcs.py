@@ -1,13 +1,18 @@
+import json
+
 from aiida.orm.calculation.job import JobCalculation
 from aiida.common.utils import classproperty
+from aiida.common.exceptions import (InputValidationError, ValidationError)
+from aiida.common.datastructures import (CalcInfo, CodeInfo)
 from aiida.orm import DataFactory
 
 ParameterData = DataFactory('parameter')
 
+
 class MultiplyCalculation(JobCalculation):
     '''add two numbers (Test plugin for new plugin system)'''
 
-    def _init_internal_parameters(self):
+    def _init_internal_params(self):
         super(MultiplyCalculation, self)._init_internal_params()
 
         self._INPUT_FILE_NAME = 'in.json'
@@ -30,54 +35,54 @@ class MultiplyCalculation(JobCalculation):
             })
         return retdict
 
-def _prepare_for_submission(self, tempfolder, inputdict):
-        """
-        This is the routine to be called when you want to create
-        the input files and related stuff with a plugin.
+    def _prepare_for_submission(self, tempfolder, inputdict):
+            """
+            This is the routine to be called when you want to create
+            the input files and related stuff with a plugin.
 
-        :param tempfolder: a aiida.common.folders.Folder subclass where
-                           the plugin should put all its files.
-        :param inputdict: a dictionary with the input nodes, as they would
-                be returned by get_inputs_dict (with the Code!)
-        """
-        try:
-            parameters = inputdict.pop(self.get_linkname('parameters'))
-        except KeyError:
-            raise InputValidationError("No parameters specified for this "
-                                       "calculation")
-        if not isinstance(parameters, ParameterData):
-            raise InputValidationError("parameters is not of type "
-                                       "ParameterData")
-        try:
-            code = inputdict.pop(self.get_linkname('code'))
-        except KeyError:
-            raise InputValidationError("No code specified for this "
-                                       "calculation")
-        if inputdict:
-            raise ValidationError("Cannot add other nodes beside parameters")
+            :param tempfolder: a aiida.common.folders.Folder subclass where
+                            the plugin should put all its files.
+            :param inputdict: a dictionary with the input nodes, as they would
+                    be returned by get_inputs_dict (with the Code!)
+            """
+            try:
+                parameters = inputdict.pop(self.get_linkname('parameters'))
+            except KeyError:
+                raise InputValidationError("No parameters specified for this "
+                                           "calculation")
+            if not isinstance(parameters, ParameterData):
+                raise InputValidationError("parameters is not of type "
+                                           "ParameterData")
+            try:
+                code = inputdict.pop(self.get_linkname('code'))
+            except KeyError:
+                raise InputValidationError("No code specified for this "
+                                           "calculation")
+            if inputdict:
+                raise ValidationError("Cannot add other nodes beside parameters")
 
-        ##############################
-        # END OF INITIAL INPUT CHECK #
-        ##############################
+            ##############################
+            # END OF INITIAL INPUT CHECK #
+            ##############################
 
-        input_json = parameters.get_dict()
+            input_json = parameters.get_dict()
 
-        # write all the input to a file
-        input_filename = tempfolder.get_abs_path(self._INPUT_FILE_NAME)
-        with open(input_filename, 'w') as infile:
-            json.dump(input_json, infile)
+            # write all the input to a file
+            input_filename = tempfolder.get_abs_path(self._INPUT_FILE_NAME)
+            with open(input_filename, 'w') as infile:
+                json.dump(input_json, infile)
 
-        # ============================ calcinfo ================================
+            # ============================ calcinfo ================================
 
-        calcinfo = CalcInfo()
-        calcinfo.uuid = self.uuid
-        calcinfo.local_copy_list = []
-        calcinfo.remote_copy_list = []
-        calcinfo.retrieve_list = [self._OUTPUT_FILE_NAME]
+            calcinfo = CalcInfo()
+            calcinfo.uuid = self.uuid
+            calcinfo.local_copy_list = []
+            calcinfo.remote_copy_list = []
+            calcinfo.retrieve_list = [self._OUTPUT_FILE_NAME]
 
-        codeinfo = CodeInfo()
-        codeinfo.cmdline_params = [self._INPUT_FILE_NAME,self._OUTPUT_FILE_NAME]
-        codeinfo.code_uuid = code.uuid
-        calcinfo.codes_info = [codeinfo]
+            codeinfo = CodeInfo()
+            codeinfo.cmdline_params = [self._INPUT_FILE_NAME, self._OUTPUT_FILE_NAME]
+            codeinfo.code_uuid = code.uuid
+            calcinfo.codes_info = [codeinfo]
 
-        return calcinfo
+            return calcinfo

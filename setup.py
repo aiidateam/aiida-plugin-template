@@ -23,7 +23,7 @@ if __name__ == '__main__':
                 'mul = aiida_mul.calcs:MultiplyCalculation'
             ],
             'aiida.parsers': [
-                'mul = aiida_mul.parsers:MultiplyParsers'
+                'mul = aiida_mul.parsers:MultiplyParser'
             ]
         },
         scripts=['bin/submit_mul']
