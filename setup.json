@@ -4,6 +4,7 @@
     "author": "Rico Haeuselmann",
     "author_email": "haeuselm@epfl.ch",
     "description": "Simple, useless plugin for testing and demonstration",
+    "url": "https://github.com/DropD/aiida-mul",
     "classifiers": [
         "Programming Language :: Python"
     ],
