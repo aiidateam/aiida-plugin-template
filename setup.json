@@ -1,0 +1,25 @@
+
+{
+    "name": "aiida_mul",
+    "author": "Rico Haeuselmann",
+    "author_email": "haeuselm@epfl.ch",
+    "classifiers": [
+        "Programming Language :: Python"
+    ],
+    "version": "0.1",
+    "install_requires": [
+        "aiida >= 0.7"
+    ],
+    "entry_points": {
+        "console_scripts": [
+            "aiida_mul = aiida_mul.code:mul"
+        ],
+        "aiida.calculations": [
+            "mul = aiida_mul.calcs:MultiplyCalculation"
+        ],
+        "aiida.parsers": [
+            "mul = aiida_mul.parsers:MultiplyParser"
+        ]
+    },
+    "scripts": ["bin/submit_mul"]
+}
