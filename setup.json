@@ -1,27 +1,28 @@
-
 {
-    "name": "aiida-mul",
+    "name": "aiida-plugin",
     "author": "Rico Haeuselmann",
     "author_email": "haeuselm@epfl.ch",
-    "description": "Simple, useless plugin for testing and demonstration",
+    "description": "Minimal AiiDA plugin for testing and getting started with development",
     "url": "https://github.com/DropD/aiida-mul",
     "license": "Creative Commons",
     "classifiers": [
         "Programming Language :: Python"
     ],
     "version": "0.1",
+    "setup_requires": ["reentry"],
+    "reentry_register": true,
     "install_requires": [
-        "aiida >= 0.7"
+        "aiida >= 0.8"
     ],
     "entry_points": {
         "console_scripts": [
             "aiida_mul = aiida_mul.code:mul"
         ],
         "aiida.calculations": [
-            "mul = aiida_mul.calcs:MultiplyCalculation"
+            "plugin.multiply = aiida_mul.calcs:MultiplyCalculation"
         ],
         "aiida.parsers": [
-            "mul = aiida_mul.parsers:MultiplyParser"
+            "plugin.multiply = aiida_mul.parsers:MultiplyParser"
         ]
     },
     "scripts": ["bin/submit_mul"]
