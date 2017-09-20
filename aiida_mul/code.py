@@ -1,6 +1,17 @@
 #!/usr/bin/env python
 
-def mul():
+def multiply():
+    """Example code, multiplying two numbers.
+
+    Usage: ./code.py in_file out_file
+
+    Reads input from in_file (e.g.: {"x1": 2, "x2": 4})
+    Writes product to out_file (e.g.: {"product": 8})
+    
+    Note:
+     * This would be replaced by a python wrapper around your code.
+     * This code will be executed on the computer you specify.
+    """
     import json
     import sys
 

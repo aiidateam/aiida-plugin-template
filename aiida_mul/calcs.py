@@ -10,14 +10,19 @@ ParameterData = DataFactory('parameter')
 
 
 class MultiplyCalculation(JobCalculation):
-    '''add two numbers (Test plugin for new plugin system)'''
+    '''AiiDA plugin for simple "multiplication" code
+    
+    AiiDA plugin add two numbers (Test plugin for new plugin system)
+    '''
 
     def _init_internal_params(self):
+        # reuse base class function
         super(MultiplyCalculation, self)._init_internal_params()
 
         self._INPUT_FILE_NAME = 'in.json'
         self._OUTPUT_FILE_NAME = 'out.json'
-        self._default_parser = 'mul'
+        # mul.product entry point defined in setup.json
+        self._default_parser = 'mul.product'
 
     @classproperty
     def _use_methods(cls):
@@ -36,15 +41,14 @@ class MultiplyCalculation(JobCalculation):
         return retdict
 
     def _prepare_for_submission(self, tempfolder, inputdict):
-            """
-            This is the routine to be called when you want to create
-            the input files and related stuff with a plugin.
+            """Creates input files.
 
-            :param tempfolder: a aiida.common.folders.Folder subclass where
-                            the plugin should put all its files.
-            :param inputdict: a dictionary with the input nodes, as they would
-                    be returned by get_inputs_dict (with the Code!)
+            :param tempfolder: aiida.common.folders.Folder subclass where
+                the plugin should put all its files.
+            :param inputdict: dictionary of the input nodes as they would
+                be returned by get_inputs_dict
             """
+            # Check inputdict
             try:
                 parameters = inputdict.pop(self.get_linkname('parameters'))
             except KeyError:
@@ -59,21 +63,18 @@ class MultiplyCalculation(JobCalculation):
                 raise InputValidationError("No code specified for this "
                                            "calculation")
             if inputdict:
-                raise ValidationError("Cannot add other nodes beside parameters")
+                raise ValidationError("Input can only be parameter node")
 
-            ##############################
-            # END OF INITIAL INPUT CHECK #
-            ##############################
-
+            # In this example, the input file is simply a json dict.
+            # Adapt for your particular code!
             input_json = parameters.get_dict()
 
-            # write all the input to a file
+            # Write input to file
             input_filename = tempfolder.get_abs_path(self._INPUT_FILE_NAME)
             with open(input_filename, 'w') as infile:
                 json.dump(input_json, infile)
 
-            # ============================ calcinfo ================================
-
+            # Prepare CalcInfo object to be returned to aiida
             calcinfo = CalcInfo()
             calcinfo.uuid = self.uuid
             calcinfo.local_copy_list = []

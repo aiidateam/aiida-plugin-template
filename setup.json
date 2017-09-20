@@ -1,5 +1,5 @@
 {
-    "name": "aiida-plugin",
+    "name": "aiida_mul",
     "author": "Rico Haeuselmann",
     "author_email": "haeuselm@epfl.ch",
     "description": "Minimal AiiDA plugin for testing and getting started with development",
@@ -16,14 +16,14 @@
     ],
     "entry_points": {
         "console_scripts": [
-            "aiida_mul = aiida_mul.code:mul"
+            "mul = aiida_mul.code:multiply"
         ],
         "aiida.calculations": [
-            "plugin.multiply = aiida_mul.calcs:MultiplyCalculation"
+            "mul.multiply = aiida_mul.calcs:MultiplyCalculation"
         ],
         "aiida.parsers": [
-            "plugin.multiply = aiida_mul.parsers:MultiplyParser"
+            "mul.product = aiida_mul.parsers:MultiplyParser"
         ]
     },
-    "scripts": ["bin/submit_mul"]
+    "scripts": ["examples/cli.py"]
 }
