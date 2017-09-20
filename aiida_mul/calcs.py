@@ -12,7 +12,7 @@ ParameterData = DataFactory('parameter')
 class MultiplyCalculation(JobCalculation):
     '''AiiDA plugin for simple "multiplication" code
     
-    AiiDA plugin add two numbers (Test plugin for new plugin system)
+    Simple AiiDA plugin for wrapping a code that adds two numbers.
     '''
 
     def _init_internal_params(self):
@@ -26,8 +26,7 @@ class MultiplyCalculation(JobCalculation):
 
     @classproperty
     def _use_methods(cls):
-        """
-        Additional use_* methods for the namelists class.
+        """Additional use_* methods for the namelists class.
         """
         retdict = JobCalculation._use_methods
         retdict.update({
@@ -41,7 +40,7 @@ class MultiplyCalculation(JobCalculation):
         return retdict
 
     def _prepare_for_submission(self, tempfolder, inputdict):
-            """Creates input files.
+            """Create input files.
 
             :param tempfolder: aiida.common.folders.Folder subclass where
                 the plugin should put all its files.
@@ -74,7 +73,7 @@ class MultiplyCalculation(JobCalculation):
             with open(input_filename, 'w') as infile:
                 json.dump(input_json, infile)
 
-            # Prepare CalcInfo object to be returned to aiida
+            # Prepare CalcInfo to be returned to aiida
             calcinfo = CalcInfo()
             calcinfo.uuid = self.uuid
             calcinfo.local_copy_list = []

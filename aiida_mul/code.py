@@ -8,7 +8,7 @@ def multiply():
     Reads input from in_file (e.g.: {"x1": 2, "x2": 4})
     Writes product to out_file (e.g.: {"product": 8})
     
-    Note:
+    Note for developers:
      * This would be replaced by a python wrapper around your code.
      * This code will be executed on the computer you specify.
     """
@@ -25,3 +25,7 @@ def multiply():
 
     with open(out_file, 'w') as f:
         json.dump(out_dict, f)
+
+if __name__ == '__main__':
+    multiply()
+

@@ -31,7 +31,7 @@ class MultiplyParser(Parser):
         # check what is inside the folder
         list_of_files = out_folder.get_folder_list()
 
-        # we need at least the output file name
+        # we need at least the output file name as defined in calcs.py
         if self._calc._OUTPUT_FILE_NAME not in list_of_files:
             self.logger.error("Output file not found")
             return success, node_list
