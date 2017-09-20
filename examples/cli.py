@@ -4,51 +4,55 @@ import sys
 import os
 import click
 
-@click.command('submit_mul')
-@click.argument('codename') #, help='Name of the Code')
-@click.argument('computer_name') #, help='Name of the Computer')
-@click.option('--send', is_flag=True)
-def main(codename, computer_name, send):
+@click.command('cli')
+@click.argument('codename')
+@click.argument('computer_name')
+@click.option('--submit', is_flag=True, help='Actually submit calculation')
+def main(codename, computer_name, submit):
+    """Command line interface for testing and submitting calculations.
+
+    Usage: ./cli.py CODENAME COMPUTER_NAME
+    
+    CODENAME       from "verdi code setup"
+
+    COMPUTER_NAME  from "verdi computer setup"
+
+    This script extends submit.py, adding flexibility in the selected code/computer.
+    """
     from aiida.common.exceptions import NotExistent
     ParameterData = DataFactory('parameter')
 
-# The name of the code setup in AiiDA
-
-################################################################
-    if send:
-        submit_test = False
-    else:
-        submit_test = True
 
     code = Code.get_from_string(codename)
-# The following line is only needed for local codes, otherwise the
-# computer is automatically set from the code
-    computer = Computer.get(computer_name) 
+    computer = Computer.get(computer_name)
 
-# These are the two numbers to sum
+    # Prepare input parameters
+    ParameterData = DataFactory('parameter')
     parameters = ParameterData(dict={'x1':2,'x2':3})
 
+    # set up calculation
     calc = code.new_calc()
-    calc.label = "Test mul"
-    calc.description = "Test calculation with the aiida_mul code"
+    calc.label = "aiida_mul test"
+    calc.description = "Test job submission with the aiida_mul plugin"
     calc.set_max_wallclock_seconds(30*60) # 30 min
+    # This line is only needed for local codes, otherwise the computer is
+    # automatically set from the code
     calc.set_computer(computer)
     calc.set_withmpi(False)
     calc.set_resources({"num_machines": 1})
-
     calc.use_parameters(parameters)
 
-    if submit_test:
-        subfolder, script_filename = calc.submit_test()
-        print "Test submit file in {}".format(os.path.join(
-            os.path.relpath(subfolder.abspath),
-            script_filename
-            ))
-    else:
+    if submit:
         calc.store_all()
         calc.submit()
-        print "submitted calculation; calc=Calculation(uuid='{}') # ID={}".format(
-            calc.uuid,calc.dbnode.pk)
+        print("submitted calculation; calc=Calculation(uuid='{}') # ID={}"\
+                .format(calc.uuid,calc.dbnode.pk))
+    else:
+        subfolder, script_filename = calc.submit_test()
+        path = os.path.join(os.path.relpath(subfolder.abspath), script_filename)
+        print("submission test successful")
+        print("Find remote folder in {}".format(path))
+        print("In order to actually submit, add '--submit'")
 
 if __name__ == '__main__':
     main()

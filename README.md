@@ -12,7 +12,7 @@ A minimal plugin for aiida
 $ pip install -e .  # also installs aiida, if missing
 $ reentry scan -r aiida  
 $ verdi quicksetup  # better to set up a new profile
-$ verdi calculation plugins  # should now show aiida-plugin.multiply
+$ verdi calculation plugins  # should now show mul.multiply
 ```
 
 # Usage
@@ -98,14 +98,17 @@ $ verdi calculation list
 Total results: 1
 
 $ verdi daemon start  # may need to 'verdi daemon configureuser'
+Clearing all locks ...
+Starting AiiDA Daemon ...
+Daemon started
+
+$ verdi calculation list -a # after daemon poll (30s), calculation should be "FINISHED"
 # Last daemon state_updater check: 0h:00m:06s ago (at 19:36:11 on 2017-09-20)
   PK  State             Creation    Sched. state    Computer    Type
 ----  ----------------  ----------  --------------  ----------  ------------
    6  FINISHED          29s ago     DONE            localhost   mul.multiply
 
 Total results: 1
-
-$ verdi calculation list -a # after next daemon poll, calculation should be "FINISHED"
 
 $ verdi calculation show 6
 -----------  ---------------------------------------------
