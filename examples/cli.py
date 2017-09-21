@@ -47,7 +47,7 @@ def main(codename, computer_name, submit):
                 .format(calc.uuid,calc.dbnode.pk))
     else:
         subfolder, script_filename = calc.submit_test()
-        path = os.path.join(os.path.relpath(subfolder.abspath), script_filename)
+        path = os.path.relpath(subfolder.abspath)
         print("submission test successful")
         print("Find remote folder in {}".format(path))
         print("In order to actually submit, add '--submit'")

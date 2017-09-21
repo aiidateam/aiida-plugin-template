@@ -31,3 +31,7 @@ class MultiplyParameters(ParameterData):
     def x2(self):
         return self.get_attr('x2', None)
 
+
+    def __str__(self):
+        s = "x1: {}, x2: {}".format(self.x1, self.x2)
+        return s

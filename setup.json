@@ -16,7 +16,7 @@
     ],
     "entry_points": {
         "console_scripts": [
-            "mul = aiida_mul.code:multiply"
+            "aiida-mul-parameters = aiida_mul.data_cmd:parameters"
         ],
         "aiida.data": [
             "mul.parameters = aiida_mul.data:MultiplyParameters"
