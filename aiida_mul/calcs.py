@@ -6,7 +6,7 @@ from aiida.common.exceptions import (InputValidationError, ValidationError)
 from aiida.common.datastructures import (CalcInfo, CodeInfo)
 from aiida.orm import DataFactory
 
-ParameterData = DataFactory('parameter')
+MultiplyParameters = DataFactory('mul.parameters')
 
 
 class MultiplyCalculation(JobCalculation):
@@ -26,18 +26,21 @@ class MultiplyCalculation(JobCalculation):
 
     @classproperty
     def _use_methods(cls):
-        """Additional use_* methods for the namelists class.
+        """Add use_* methods for calculations.
+        
+        Code below enables the usage
+        my_calculation.use_parameters(my_parameters)
         """
-        retdict = JobCalculation._use_methods
-        retdict.update({
+        use_dict = JobCalculation._use_methods
+        use_dict.update({
             "parameters": {
-                'valid_types': ParameterData,
+                'valid_types': MultiplyParameters,
                 'additional_parameter': None,
                 'linkname': 'parameters',
                 'docstring': ("Use a node that specifies the input parameters ")
                 },
             })
-        return retdict
+        return use_dict
 
     def _prepare_for_submission(self, tempfolder, inputdict):
             """Create input files.
@@ -53,25 +56,25 @@ class MultiplyCalculation(JobCalculation):
             except KeyError:
                 raise InputValidationError("No parameters specified for this "
                                            "calculation")
-            if not isinstance(parameters, ParameterData):
-                raise InputValidationError("parameters is not of type "
-                                           "ParameterData")
+            if not isinstance(parameters, MultiplyParameters):
+                raise InputValidationError("parameters not of type "
+                                           "MultiplyParameters")
             try:
                 code = inputdict.pop(self.get_linkname('code'))
             except KeyError:
                 raise InputValidationError("No code specified for this "
                                            "calculation")
             if inputdict:
-                raise ValidationError("Input can only be parameter node")
+                raise ValidationError("Unknown inputs besides MultiplyParameters")
 
             # In this example, the input file is simply a json dict.
             # Adapt for your particular code!
-            input_json = parameters.get_dict()
+            input_dict = parameters.get_dict()
 
             # Write input to file
             input_filename = tempfolder.get_abs_path(self._INPUT_FILE_NAME)
             with open(input_filename, 'w') as infile:
-                json.dump(input_json, infile)
+                json.dump(input_dict, infile)
 
             # Prepare CalcInfo to be returned to aiida
             calcinfo = CalcInfo()

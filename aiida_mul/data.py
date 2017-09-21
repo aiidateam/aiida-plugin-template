@@ -1,51 +1,33 @@
 # -*- coding: utf-8 -*-
-from aiida.orm.data import Data
+from aiida.orm.data.parameter import ParameterData
 
-# you can subclass Data or or any data type listed under 'verdi data'
-class UnsignedInteger(Data):
-    """Represents an unsigned integer.
+# you can directly subclass aiida.orm.data.Data 
+# or any other data type listed under 'verdi data'
+class MultiplyParameters(ParameterData):
+    """Input parameters for multiply calculation.
     """
 
-    def __init__(self, value=1):
+    def __init__(self, x1=1, x2=1, **kwargs):
         """Constructor
 
-        default value is 1.
+        Usage: MultiplyParameters(x1=3, x2=4)
+
+        Note: As of 2017-09, the constructor must also support a single dbnode
+        argument (to reconstruct the object from a database node).
+        For this reason, positional arguments are not allowed.
         """
-        super(Data, self).__init__()
-        self.value = value
+        if 'dbnode' in kwargs:
+            super(ParameterData, self).__init__(**kwargs)
+        else:
+            # set dictionary of ParameterData
+            input_dict = { 'x1': x1, 'x2': x2 }
+            super(ParameterData, self).__init__(dict=input_dict, **kwargs)
 
     @property
-    def value(self):
-        """value attribute.
+    def x1(self):
+        return self.get_attr('x1', None)
 
-        Uses get_attr method from aiida.orm.data.Data
-        """
-        return self.get_attr('value', None)
-
-    @value.setter
-    def value(self, value):
-        """value setter.
-
-        Convenience method that allows to write 'a.value = 5'
-        """
-        is_uint = type(value) == int and value >= 0
-        if not is_uint:
-            raise ValueError("Accept only unsigned integers")
-
-        self._set_attr('value', value)
-
-    def __mul__(self, other):
-        """Multiplication operator for unsigned integers.
-
-        Convenience method that allows to write 'c = a * b' instead of  
-        c = UnsignedInteger()
-        c.value = a.value * b.value )
-        """
-        if isinstance(other, UnsignedInteger):
-            return UnsignedInteger(self.value * other.value)
-        elif isinstance(other, int):
-            return UnsignedInteger(self.value * other)
-        else:
-            raise TypeError("addition not implemented for type {}".format(type(other)))
-
+    @property
+    def x2(self):
+        return self.get_attr('x2', None)
 

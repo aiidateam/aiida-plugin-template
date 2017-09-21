@@ -20,15 +20,13 @@ def main(codename, computer_name, submit):
     This script extends submit.py, adding flexibility in the selected code/computer.
     """
     from aiida.common.exceptions import NotExistent
-    ParameterData = DataFactory('parameter')
-
 
     code = Code.get_from_string(codename)
     computer = Computer.get(computer_name)
 
     # Prepare input parameters
-    ParameterData = DataFactory('parameter')
-    parameters = ParameterData(dict={'x1':2,'x2':3})
+    MultiplyParameters = DataFactory('mul.parameters')
+    parameters = MultiplyParameters(x1=2, x2=3)
 
     # set up calculation
     calc = code.new_calc()

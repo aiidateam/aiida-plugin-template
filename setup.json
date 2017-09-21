@@ -18,6 +18,9 @@
         "console_scripts": [
             "mul = aiida_mul.code:multiply"
         ],
+        "aiida.data": [
+            "mul.parameters = aiida_mul.data:MultiplyParameters"
+        ],
         "aiida.calculations": [
             "mul.multiply = aiida_mul.calcs:MultiplyCalculation"
         ],

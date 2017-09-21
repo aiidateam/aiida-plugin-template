@@ -8,14 +8,14 @@ Note: This script assumes you have set up computer and code as in README.md.
 import os
 
 # use code name specified using 'verdi code setup'
-code = Code.get_from_string('aiida_mul')
+code = Code.get_from_string('aiida_mul2')
 
 # use computer name specified using 'verdi computer setup'
 computer = Computer.get('localhost')
 
 # Prepare input parameters
-ParameterData = DataFactory('parameter')
-parameters = ParameterData(dict={'x1':2,'x2':3})
+MultiplyParameters = DataFactory('mul.parameters')
+parameters = MultiplyParameters(x1=2, x2=3)
 
 # set up calculation
 calc = code.new_calc()

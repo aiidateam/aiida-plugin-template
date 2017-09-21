@@ -26,6 +26,8 @@ def multiply():
     with open(out_file, 'w') as f:
         json.dump(out_dict, f)
 
+    print("my test")
+
 if __name__ == '__main__':
     multiply()
 
