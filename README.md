@@ -9,7 +9,10 @@ AiiDA plugin template for testing and gettings started with development
 # Installation
 
 ```shell
-$ pip install -e .  # also installs aiida, if missing
+$ git clone git@github.com:DropD/aiida-mul.git aiida-template
+$ cd aiida-template
+$ git checkout plugin_template
+$ pip install -e .  # also installs aiida, if missing (but not postgres)
 $ reentry scan -r aiida  
 $ verdi quicksetup  # better to set up a new profile
 $ verdi calculation plugins  # should now show template.multiply
