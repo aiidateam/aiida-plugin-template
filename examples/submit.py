@@ -8,7 +8,7 @@ Note: This script assumes you have set up computer and code as in README.md.
 import os
 
 # use code name specified using 'verdi code setup'
-code = Code.get_from_string('aiida_mul2')
+code = Code.get_from_string('aiida_mul')
 
 # use computer name specified using 'verdi computer setup'
 computer = Computer.get('localhost')

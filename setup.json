@@ -1,6 +1,6 @@
 {
-    "name": "aiida_mul",
-    "author": "Rico Haeuselmann",
+    "name": "aiida-mul",
+    "author": "Rico Haeuselmann, Leopold Talirz",
     "author_email": "haeuselm@epfl.ch",
     "description": "Minimal AiiDA plugin for testing and getting started with development",
     "url": "https://github.com/DropD/aiida-mul",
@@ -15,17 +15,17 @@
         "aiida >= 0.8"
     ],
     "entry_points": {
-        "console_scripts": [
-            "aiida-mul-parameters = aiida_mul.data_cmd:parameters"
+        "aiida.calculations": [
+            "mul.multiply = aiida_mul.calculations:MultiplyCalculation"
+        ],
+        "aiida.parsers": [
+            "mul.product = aiida_mul.parsers:MultiplyParser"
         ],
         "aiida.data": [
             "mul.parameters = aiida_mul.data:MultiplyParameters"
         ],
-        "aiida.calculations": [
-            "mul.multiply = aiida_mul.calcs:MultiplyCalculation"
-        ],
-        "aiida.parsers": [
-            "mul.product = aiida_mul.parsers:MultiplyParser"
+        "console_scripts": [
+            "aiida-mul-parameters = aiida_mul.data_cli:parameters"
         ]
     },
     "scripts": ["examples/cli.py"]
