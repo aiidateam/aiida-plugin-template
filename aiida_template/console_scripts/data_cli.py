@@ -2,19 +2,20 @@ import click
 import sys
 
 @click.group()
-def parameters():
-    """Command line interface for MultiplyParameters nodes"""
+def cli():
+    """Command line interface for template plugin"""
     pass
 
-@parameters.command()
+@cli.command()
 def list():
-    """Output all MultiplyParameters nodes"""
+    """Display all MultiplyParameters nodes"""
     from aiida import is_dbenv_loaded, load_dbenv
     if not is_dbenv_loaded():
         load_dbenv()
 
     from aiida.orm.querybuilder import QueryBuilder
-    from data import MultiplyParameters
+    from aiida.orm import DataFactory
+    MultiplyParameters = DataFactory('template.factors')
 
     qb = QueryBuilder()
     qb.append(MultiplyParameters)

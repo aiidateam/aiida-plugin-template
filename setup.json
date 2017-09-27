@@ -22,10 +22,10 @@
             "template.product = aiida_template.parsers.multiply:MultiplyParser"
         ],
         "aiida.data": [
-            "template.parameters = aiida_template.data.multiply:MultiplyParameters"
+            "template.factors = aiida_template.data.multiply:MultiplyParameters"
         ],
         "console_scripts": [
-            "aiida-template-parameters = aiida_mul.console_scripts.data_cli:parameters"
+            "aiida-template-factors = aiida_template.console_scripts.data_cli:cli"
         ]
     },
     "scripts": ["examples/cli.py"]

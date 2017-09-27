@@ -6,11 +6,11 @@ from aiida.common.exceptions import (InputValidationError, ValidationError)
 from aiida.common.datastructures import (CalcInfo, CodeInfo)
 from aiida.orm import DataFactory
 
-MultiplyParameters = DataFactory('mul.parameters')
+MultiplyParameters = DataFactory('template.factors')
 
 
 class MultiplyCalculation(JobCalculation):
-    '''AiiDA plugin for simple "multiplication" code
+    '''AiiDA calculation plugin for simple "multiplication"
     
     Simple AiiDA plugin for wrapping a code that adds two numbers.
     '''
@@ -21,8 +21,8 @@ class MultiplyCalculation(JobCalculation):
 
         self._INPUT_FILE_NAME = 'in.json'
         self._OUTPUT_FILE_NAME = 'out.json'
-        # mul.product entry point defined in setup.json
-        self._default_parser = 'mul.product'
+        # template.product entry point defined in setup.json
+        self._default_parser = 'template.product'
 
     @classproperty
     def _use_methods(cls):

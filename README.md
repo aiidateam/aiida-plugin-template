@@ -1,6 +1,6 @@
-# AiiDA - Mul
+# aiida-template
 
-A minimal plugin for aiida
+AiiDA plugin template for testing and gettings started with development
 
 * can be pip-installed from source with no dependencies except for aiida 0.8 (or later)
 * can be run on a local machine with direct scheduler for easy testing
@@ -12,7 +12,7 @@ A minimal plugin for aiida
 $ pip install -e .  # also installs aiida, if missing
 $ reentry scan -r aiida  
 $ verdi quicksetup  # better to set up a new profile
-$ verdi calculation plugins  # should now show mul.multiply
+$ verdi calculation plugins  # should now show template.multiply
 ```
 
 # Usage

@@ -8,19 +8,19 @@ Note: This script assumes you have set up computer and code as in README.md.
 import os
 
 # use code name specified using 'verdi code setup'
-code = Code.get_from_string('aiida_mul2')
+code = Code.get_from_string('aiida_template')
 
 # use computer name specified using 'verdi computer setup'
 computer = Computer.get('localhost')
 
 # Prepare input parameters
-MultiplyParameters = DataFactory('mul.parameters')
+MultiplyParameters = DataFactory('template.factors')
 parameters = MultiplyParameters(x1=2, x2=3)
 
 # set up calculation
 calc = code.new_calc()
-calc.label = "aiida_mul test"
-calc.description = "Test job submission with the aiida_mul plugin"
+calc.label = "aiida_template computes 2*3"
+calc.description = "Test job submission with the aiida_template plugin"
 calc.set_max_wallclock_seconds(30*60) # 30 min
 # This line is only needed for local codes, otherwise the computer is
 # automatically set from the code
