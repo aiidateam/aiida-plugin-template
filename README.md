@@ -62,11 +62,11 @@ There are no special keys to be configured. Configuration completed.
 $ verdi code setup  # set up (local) code
 At any prompt, type ? to get some help.
 ---------------------------------------
-=> Label: aiida_mul
+=> Label: aiida_template
 => Description: aiida template plugin
 => Local: True
-=> Default input plugin: mul.multiply
-=> Folder with the code: /your/path/to/aiida_mul
+=> Default input plugin: template.multiply
+=> Folder with the code: /your/path/to/aiida_template
 => Relative path of the executable: code.py
 => Text to prepend to each command execution
 FOR INSTANCE, MODULES TO BE LOADED FOR THIS CODE:
@@ -83,7 +83,7 @@ FOR INSTANCE, MODULES TO BE LOADED FOR THIS CODE:
    # End of old input. You can keep adding
    # lines, or press CTRL+D to store this value
    # ------------------------------------------
-Code 'aiida_mul' successfully stored in DB.
+Code 'aiida_template' successfully stored in DB.
 pk: 1, uuid: 7627c747-b7f2-4717-b0fa-94e53915e422
 
 $ verdi run examples/submit.py
@@ -92,8 +92,8 @@ submitted calculation; calc=Calculation(uuid='a4d2fa09-f704-4d47-8d0f-07001b1331
 $ verdi calculation list
 # Last daemon state_updater check: (Never)
   PK  State     Creation      Sched. state  Computer    Type
-----  --------  ----------  --------------  ----------  ------------
-   6  TOSUBMIT  1m ago                      localhost   mul.multiply
+----  --------  ----------  --------------  ----------  ----------------
+   3  TOSUBMIT  1m ago                      localhost   emplate.multiply
 
 Total results: 1
 
@@ -105,41 +105,42 @@ Daemon started
 $ verdi calculation list -a # after daemon poll (30s), calculation should be "FINISHED"
 # Last daemon state_updater check: 0h:00m:06s ago (at 19:36:11 on 2017-09-20)
   PK  State             Creation    Sched. state    Computer    Type
-----  ----------------  ----------  --------------  ----------  ------------
-   6  FINISHED          29s ago     DONE            localhost   mul.multiply
+----  ----------------  ----------  --------------  ----------  ----------------
+   3  FINISHED          29s ago     DONE            localhost   emplate.multiply
 
 Total results: 1
 
-$ verdi calculation show 6
------------  ---------------------------------------------
+$ verdi calculation show 3
+-----------  --------------------------------------------------
 type         MultiplyCalculation
-pk           19
-uuid         53947edf-9b13-47e1-a5a1-0d39a570ab05
-label        aiida_mul test
-description  Test job submission with the aiida_mul plugin
-ctime        2017-09-20 17:35:48.914616+00:00
-mtime        2017-09-20 17:36:16.944254+00:00
+pk           23
+uuid         6d4b774a-7de7-485a-82b7-6a36b4a60db8
+label        aiida_template computes 2*3
+description  Test job submission with the aiida_template plugin
+ctime        2017-09-27 13:50:14.133219+00:00
+mtime        2017-09-27 13:52:35.683063+00:00
 computer     [1] localhost
-code         aiida_mul2
------------  ---------------------------------------------
+code         aiida_template
+-----------  --------------------------------------------------
 ##### INPUTS:
 Link label      PK  Type
-------------  ----  -------------
-parameters      18  ParameterData
+------------  ----  ------------------
+parameters       3  MultiplyParameters
 ##### OUTPUTS:
 Link label           PK  Type
 -----------------  ----  -------------
-output_parameters    22  ParameterData
-retrieved            21  FolderData
-remote_folder        20  RemoteData
+remote_folder         4  RemoteData
+output_parameters     6  ParameterData
+retrieved             5  FolderData
 
-$ verdi data parameter show 18
+
+$ verdi data parameter show 3
 {
   "x1": 2,
   "x2": 3
 }
 
-$ verdi data parameter show 22
+$ verdi data parameter show 26
 {
   "product": 6
 }
