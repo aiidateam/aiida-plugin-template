@@ -10,12 +10,16 @@ MultiplyParameters = DataFactory('template.factors')
 
 
 class MultiplyCalculation(JobCalculation):
-    '''AiiDA calculation plugin for simple "multiplication"
+    """
+    AiiDA calculation plugin for simple "multiplication"
     
     Simple AiiDA plugin for wrapping a code that adds two numbers.
-    '''
+    """
 
     def _init_internal_params(self):
+        """
+        Init internal parameters at class load time
+        """
         # reuse base class function
         super(MultiplyCalculation, self)._init_internal_params()
 
@@ -26,7 +30,8 @@ class MultiplyCalculation(JobCalculation):
 
     @classproperty
     def _use_methods(cls):
-        """Add use_* methods for calculations.
+        """
+        Add use_* methods for calculations.
         
         Code below enables the usage
         my_calculation.use_parameters(my_parameters)
@@ -44,13 +49,14 @@ class MultiplyCalculation(JobCalculation):
         return use_dict
 
     def _prepare_for_submission(self, tempfolder, inputdict):
-        """Create input files.
+        """
+        Create input files.
 
             :param tempfolder: aiida.common.folders.Folder subclass where
                 the plugin should put all its files.
             :param inputdict: dictionary of the input nodes as they would
                 be returned by get_inputs_dict
-            """
+        """
         # Check inputdict
         try:
             parameters = inputdict.pop(self.get_linkname('parameters'))

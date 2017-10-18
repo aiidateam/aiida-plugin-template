@@ -58,7 +58,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'aiida-plugin-template'
-copyright = u'2017-{}, My Institution, Country. All rights reserved.'.format(time.localtime().tm_year)
+copyright = u'2017-{}, My Institution, Country. All rights reserved'.format(time.localtime().tm_year)
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

@@ -6,17 +6,19 @@ from aiida.orm.data.parameter import ParameterData
 
 
 class MultiplyParameters(ParameterData):
-    """Input parameters for multiply calculation.
+    """
+    Input parameters for multiply calculation.
     """
 
     def __init__(self, x1=1, x2=1, **kwargs):
-        """Constructor
+        """
+        Constructor for the data class
 
-        Usage: MultiplyParameters(x1=3, x2=4)
+        Usage: ``MultiplyParameters(x1=3, x2=4)``
 
-        Note: As of 2017-09, the constructor must also support a single dbnode
-        argument (to reconstruct the object from a database node).
-        For this reason, positional arguments are not allowed.
+        .. note:: As of 2017-09, the constructor must also support a single dbnode
+          argument (to reconstruct the object from a database node).
+          For this reason, positional arguments are not allowed.
         """
         if 'dbnode' in kwargs:
             super(MultiplyParameters, self).__init__(**kwargs)
@@ -27,12 +29,21 @@ class MultiplyParameters(ParameterData):
 
     @property
     def x1(self):
+        """
+        The value for ``x1`` (the first number to multiply)
+        """
         return self.get_attr('x1', None)
 
     @property
     def x2(self):
+        """
+        The value for ``x2`` (the second number to multiply)
+        """
         return self.get_attr('x2', None)
 
     def __str__(self):
+        """
+        Return the two values ``x1`` and ``x2`` as a string
+        """
         s = "x1: {}, x2: {}".format(self.x1, self.x2)
         return s

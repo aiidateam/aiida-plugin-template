@@ -1,5 +1,7 @@
-"""AiiDA Plugin Template
-
-Use this template for testing and for getting started with development of new
-plugins.
 """
+AiiDA Plugin Template
+
+Adapt this template for your own needs.
+"""
+
+__version__ = "0.1.0"

@@ -7,17 +7,23 @@ import json
 
 
 class MultiplyParser(Parser):
-    """Parser class for parsing output of multiplication.
+    """
+    Parser class for parsing output of multiplication.
     """
 
     # pylint: disable=protected-access
     def parse_with_retrieved(self, retrieved):
-        """Parse output data folder, store results in database.
+        """
+        Parse output data folder, store results in database.
 
-        :param retrieved: 
-        :returns: 
-          bool: success
-          node_list: list of new nodes to be stored in the db
+        :param retrieved: a dictionary of retrieved nodes, where
+          the key is the link name
+        :returns: a tuple with two values ``(bool, node_list)``, 
+          where:
+
+          * ``bool``: variable to tell if the parsing succeeded
+          * ``node_list``: list of new nodes to be stored in the db
+            (as a list of tuples ``(link_name, node)``)
         """
         success = False
         node_list = ()

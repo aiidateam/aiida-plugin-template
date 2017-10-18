@@ -1,6 +1,6 @@
-########################################################################
-Template documentation for the `AiiDA`_ plugin ``aiida-plugin-template``
-########################################################################
+#####################################
+`AiiDA`_ plugin aiida-plugin-template
+#####################################
 
 .. figure:: images/AiiDA_transparent_logo.png
     :width: 250px
@@ -14,7 +14,11 @@ Welcome to the example documentation of the AiiDA plugin ``aiida-plugin-template
 
 The plugin is available at http://github.com/aiidateam/aiida-plugin-template
 
-If you use this plugin and/or AiiDA for your research, please cite the following work:
+.. If you use this plugin for your research, please cite the following work:
+
+.. highlights:: Author Name1, Author Name2, *Paper title*, Jornal Name XXX, YYYY (Year).
+
+If you use AiiDA for your research, please cite the following work:
 
 .. highlights:: Giovanni Pizzi, Andrea Cepellotti, Riccardo Sabatini, Nicola Marzari,
   and Boris Kozinsky, *AiiDA: automated interactive infrastructure and database

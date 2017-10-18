@@ -8,11 +8,11 @@
     "classifiers": [
         "Programming Language :: Python"
     ],
-    "version": "0.1",
+    "version": "0.1.0",
     "setup_requires": ["reentry"],
     "reentry_register": true,
     "install_requires": [
-        "aiida >= 0.8"
+        "aiida >= 0.9"
     ],
     "entry_points": {
         "aiida.calculations": [

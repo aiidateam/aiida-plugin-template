@@ -1,3 +1,3 @@
-"""Put workflows for you plugin here.
-
+"""
+Put workflows for you plugin here, if any.
 """

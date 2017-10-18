@@ -10,7 +10,9 @@ def cli():
 
 @cli.command()
 def list():  # pylint: disable=redefined-builtin
-    """Display all MultiplyParameters nodes"""
+    """
+    Display all MultiplyParameters nodes
+    """
     from aiida import is_dbenv_loaded, load_dbenv
     if not is_dbenv_loaded():
         load_dbenv()
