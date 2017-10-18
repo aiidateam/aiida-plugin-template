@@ -1,6 +1,6 @@
 # aiida-template
 
-AiiDA plugin template for testing and gettings started with development
+AiiDA plugin template for testing and getting started with development
 
 * can be pip-installed from source with no dependencies except for aiida 0.8 (or later)
 * can be run on a local machine with direct scheduler for easy testing
@@ -9,13 +9,14 @@ AiiDA plugin template for testing and gettings started with development
 # Installation
 
 ```shell
-$ git clone git@github.com:DropD/aiida-mul.git aiida-template
-$ cd aiida-template
-$ git checkout plugin_template
+$ git clone --depth 1 https://github.com/aiidateam/aiida-plugin-template.git aiida-YOUR-PLUGIN-NAME
+$ cd YOUR-PLUGIN-NAME
+$ git mv aiida_template aiida_YOUR_PLUGIN_NAME
+$ sed -i -e 's|aiida-template|aiida-YOUR-PLUGIN-NAME|' setup.json
 $ pip install -e .  # also installs aiida, if missing (but not postgres)
-$ reentry scan -r aiida  
+$ reentry scan -r aiida
 $ verdi quicksetup  # better to set up a new profile
-$ verdi calculation plugins  # should now show template.multiply
+$ verdi calculation plugins  # should now show template.multiply (an endpoint implemented in this plugin template)
 ```
 
 # Usage
