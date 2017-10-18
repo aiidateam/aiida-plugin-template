@@ -1,17 +1,15 @@
-# aiida-template
+# aiida-plugin-template
 
 AiiDA plugin template for testing and gettings started with development
 
 * can be pip-installed from source with no dependencies except for aiida 0.8 (or later)
 * can be run on a local machine with direct scheduler for easy testing
 
-
 # Installation
 
 ```shell
-$ git clone git@github.com:DropD/aiida-mul.git aiida-template
-$ cd aiida-template
-$ git checkout plugin_template
+$ git clone https://github.com/aiidateam/aiida-plugin-template aiida-plugin-template
+$ cd aiida-plugin-template
 $ pip install -e .  # also installs aiida, if missing (but not postgres)
 $ reentry scan -r aiida  
 $ verdi quicksetup  # better to set up a new profile
@@ -65,11 +63,11 @@ There are no special keys to be configured. Configuration completed.
 $ verdi code setup  # set up (local) code
 At any prompt, type ? to get some help.
 ---------------------------------------
-=> Label: aiida_template
+=> Label: aiida_plugin_template
 => Description: aiida template plugin
 => Local: True
 => Default input plugin: template.multiply
-=> Folder with the code: /your/path/to/aiida_template
+=> Folder with the code: /your/path/to/aiida_plugin_template
 => Relative path of the executable: code.py
 => Text to prepend to each command execution
 FOR INSTANCE, MODULES TO BE LOADED FOR THIS CODE:
@@ -86,7 +84,7 @@ FOR INSTANCE, MODULES TO BE LOADED FOR THIS CODE:
    # End of old input. You can keep adding
    # lines, or press CTRL+D to store this value
    # ------------------------------------------
-Code 'aiida_template' successfully stored in DB.
+Code 'aiida_plugin_template' successfully stored in DB.
 pk: 1, uuid: 7627c747-b7f2-4717-b0fa-94e53915e422
 
 $ verdi run examples/submit.py
@@ -118,12 +116,12 @@ $ verdi calculation show 3
 type         MultiplyCalculation
 pk           23
 uuid         6d4b774a-7de7-485a-82b7-6a36b4a60db8
-label        aiida_template computes 2*3
-description  Test job submission with the aiida_template plugin
+label        aiida_plugin_template computes 2*3
+description  Test job submission with the aiida_plugin_template plugin
 ctime        2017-09-27 13:50:14.133219+00:00
 mtime        2017-09-27 13:52:35.683063+00:00
 computer     [1] localhost
-code         aiida_template
+code         aiida_plugin_template
 -----------  --------------------------------------------------
 ##### INPUTS:
 Link label      PK  Type

@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 
 from aiida.parsers.parser import Parser
-from aiida.parsers.exceptions import OutputParsingError
 from aiida.orm.data.parameter import ParameterData
 
 import json
+
 
 class MultiplyParser(Parser):
     """Parser class for parsing output of multiplication.
     """
 
+    # pylint: disable=protected-access
     def parse_with_retrieved(self, retrieved):
         """Parse output data folder, store results in database.
 
@@ -37,7 +38,8 @@ class MultiplyParser(Parser):
             return success, node_list
 
         try:
-            with open( out_folder.get_abs_path(self._calc._OUTPUT_FILE_NAME) ) as f:
+            with open(out_folder.get_abs_path(
+                    self._calc._OUTPUT_FILE_NAME)) as f:
                 out_dict = json.load(f)
         except ValueError:
             self.logger.error("Error parsing the output json")
@@ -49,4 +51,3 @@ class MultiplyParser(Parser):
         success = True
 
         return success, node_list
-

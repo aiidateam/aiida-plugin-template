@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# you can directly subclass aiida.orm.data.Data 
+# you can directly subclass aiida.orm.data.Data
 # or any other data type listed under 'verdi data'
 from aiida.orm.data.parameter import ParameterData
+
+
 class MultiplyParameters(ParameterData):
     """Input parameters for multiply calculation.
     """
@@ -17,11 +19,11 @@ class MultiplyParameters(ParameterData):
         For this reason, positional arguments are not allowed.
         """
         if 'dbnode' in kwargs:
-            super(ParameterData, self).__init__(**kwargs)
+            super(MultiplyParameters, self).__init__(**kwargs)
         else:
             # set dictionary of ParameterData
-            input_dict = { 'x1': x1, 'x2': x2 }
-            super(ParameterData, self).__init__(dict=input_dict, **kwargs)
+            input_dict = {'x1': x1, 'x2': x2}
+            super(MultiplyParameters, self).__init__(dict=input_dict, **kwargs)
 
     @property
     def x1(self):
@@ -30,7 +32,6 @@ class MultiplyParameters(ParameterData):
     @property
     def x2(self):
         return self.get_attr('x2', None)
-
 
     def __str__(self):
         s = "x1: {}, x2: {}".format(self.x1, self.x2)

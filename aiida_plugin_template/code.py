@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+
 def multiply():
     """Example code, multiplying two numbers.
 
@@ -28,6 +29,6 @@ def multiply():
 
     print("my test")
 
+
 if __name__ == '__main__':
     multiply()
-
