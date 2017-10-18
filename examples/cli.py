@@ -4,6 +4,7 @@ import sys
 import os
 import click
 
+
 @click.command('cli')
 @click.argument('codename')
 @click.argument('computer_name')
@@ -30,9 +31,9 @@ def main(codename, computer_name, submit):
 
     # set up calculation
     calc = code.new_calc()
-    calc.label = "aiida_template computes 2*3"
-    calc.description = "Test job submission with the aiida_template plugin"
-    calc.set_max_wallclock_seconds(30*60) # 30 min
+    calc.label = "aiida_plugin_template computes 2*3"
+    calc.description = "Test job submission with the aiida_plugin_template plugin"
+    calc.set_max_wallclock_seconds(30 * 60)  # 30 min
     # This line is only needed for local codes, otherwise the computer is
     # automatically set from the code
     calc.set_computer(computer)
@@ -51,6 +52,7 @@ def main(codename, computer_name, submit):
         print("submission test successful")
         print("Find remote folder in {}".format(path))
         print("In order to actually submit, add '--submit'")
+
 
 if __name__ == '__main__':
     main()
