@@ -34,7 +34,7 @@ def multiply():
     with open(out_file, 'w') as f:
         json.dump(out_dict, f)
 
-    print("my test")
+    print("Exiting multiply code.")
 
 
 if __name__ == '__main__':

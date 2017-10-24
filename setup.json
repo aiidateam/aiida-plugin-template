@@ -9,11 +9,6 @@
         "Programming Language :: Python"
     ],
     "version": "0.1.0",
-    "setup_requires": ["reentry"],
-    "reentry_register": true,
-    "install_requires": [
-        "aiida >= 0.9"
-    ],
     "entry_points": {
         "aiida.calculations": [
             "template.multiply = aiida_plugin_template.calculations.multiply:MultiplyCalculation"
@@ -28,5 +23,18 @@
             "aiida-template-factors = aiida_plugin_template.console_scripts.data_cli:cli"
         ]
     },
-    "scripts": ["examples/cli.py"]
+    "scripts": ["examples/cli.py"],
+    "setup_requires": ["reentry"],
+    "reentry_register": true,
+    "install_requires": [
+        "aiida >= 0.9"
+    ],
+    "extras_require": {
+        "dev_precommit": [
+            "pre-commit",
+            "yapf",
+            "prospector",
+            "pylint"
+        ]
+    }
 }
