@@ -38,12 +38,13 @@ class TestMultiply(PluginTestCase):
         """Setup code on localhost computer"""
         from aiida.orm import Code
 
-        executable = os.path.realpath('../code.py')
+        script_dir = os.path.dirname(__file__)
+        executable = os.path.realpath(os.path.join(script_dir, '../code.py'))
 
         code = Code(
             files=[executable],
-            input_plugin_name='template.mutliply',
-            local_executable=executable)
+            input_plugin_name='template.multiply',
+            local_executable='code.py')
         code.label = 'plugin-template'
         code.description = 'multiply on this computer'
 
@@ -52,8 +53,8 @@ class TestMultiply(PluginTestCase):
     def setUp(self):
 
         # set up test computer
-        self.computer = self.get_localhost()
-        self.code = self.get_code()
+        self.computer = self.get_localhost().store()
+        self.code = self.get_code().store()
 
     def test_submit(self):
         """Test submitting a calculation"""
@@ -78,7 +79,7 @@ class TestMultiply(PluginTestCase):
         # automatically set from the code
         calc.set_computer(computer)
         calc.set_withmpi(False)
-        calc.set_resources({"num_machines": 1})
+        calc.set_resources({"num_machines": 1, "num_mpiprocs_per_machine": 1})
         calc.use_parameters(parameters)
 
         calc.store_all()
