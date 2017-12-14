@@ -16,7 +16,7 @@
         "aiida.parsers": [
             "template.product = aiida_plugin_template.parsers.multiply:MultiplyParser"
         ],
-        "aiida.data": [
+        "cmdline.data": [
             "template.factors = aiida_plugin_template.data.multiply:MultiplyParameters"
         ],
         "console_scripts": [

@@ -1,14 +1,14 @@
-import click
 import sys
+from aiida.cmdline.commands import verdi
 
 
-@click.group()
+@verdi.group('data')
 def cli():
     """Command line interface for template plugin"""
     pass
 
 
-@cli.command()
+@verdi.command('data')
 def list():  # pylint: disable=redefined-builtin
     """
     Display all MultiplyParameters nodes
