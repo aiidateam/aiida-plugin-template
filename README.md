@@ -5,9 +5,9 @@ AiiDA plugin template for testing and gettings started with development
 * can be pip-installed from source with no dependencies except for aiida 0.8 (or later)
 * can be run on a local machine with direct scheduler for easy testing
 
-# Documentation
-The documentation for this package can be found on Read the Docs at 
-http://aiida-plugin-template.readthedocs.io/en/latest/
+Please see the 
+[quickstart guide](http://aiida-core.readthedocs.io/en/latest/developer_guide/plugins/quickstart.html)
+for step-by-step instructions on how to develop your new AiiDA plugin using this template.
 
 # Installation
 
@@ -151,4 +151,8 @@ $ verdi data parameter show 26
 }
 
 ```
+
+# Documentation
+The rendered documentation for this package can be found on Read the Docs at
+http://aiida-plugin-template.readthedocs.io/en/latest/
 
