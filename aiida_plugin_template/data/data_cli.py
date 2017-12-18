@@ -1,15 +1,16 @@
 import sys
-from aiida.cmdline.commands import verdi
+from aiida.cmdline.commands import data_cmd
 
 
-@verdi.group('data')
+# See aiida.cmdline.data entry point in setup.json
+@data_cmd.group('template.factors')
 def cli():
     """Command line interface for template plugin"""
     pass
 
 
-@verdi.command('data')
-def list():  # pylint: disable=redefined-builtin
+@cli.command('list')
+def list_():  # pylint: disable=redefined-builtin
     """
     Display all MultiplyParameters nodes
     """
