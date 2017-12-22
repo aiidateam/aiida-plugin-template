@@ -3,8 +3,9 @@ import json
 from aiida.parsers.parser import Parser
 from aiida.parsers.exceptions import OutputParsingError
 from aiida.orm.data.parameter import ParameterData
-from aiida_plugin_template.calculations import MultiplyCalculation
 
+from aiida.orm import CalculationFactory
+MultiplyCalculation = CalculationFactory('template.multiply')
 
 class MultiplyParser(Parser):
     """
