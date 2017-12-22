@@ -11,13 +11,13 @@
     "version": "0.1.0",
     "entry_points": {
         "aiida.calculations": [
-            "template.multiply = aiida_plugin_template.calculations.multiply:MultiplyCalculation"
+            "template.multiply = aiida_plugin_template.calculations:MultiplyCalculation"
         ],
         "aiida.parsers": [
-            "template.product = aiida_plugin_template.parsers.multiply:MultiplyParser"
+            "template.product = aiida_plugin_template.parsers:MultiplyParser"
         ],
         "aiida.data": [
-            "template.factors = aiida_plugin_template.data.multiply:MultiplyParameters"
+            "template.factors = aiida_plugin_template.data:MultiplyParameters"
         ],
         "aiida.cmdline.data": [
             "template.factors = aiida_plugin_template.data.data_cli:cli"

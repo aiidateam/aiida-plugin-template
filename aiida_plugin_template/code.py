@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# This is the code wrapped by the plugin
+# (could be a binary as well)
 
 
 def multiply():
