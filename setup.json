@@ -8,7 +8,7 @@
     "classifiers": [
         "Programming Language :: Python"
     ],
-    "version": "0.1.0",
+    "version": "0.2.0",
     "entry_points": {
         "aiida.calculations": [
             "template.multiply = aiida_plugin_template.calculations.multiply:MultiplyCalculation"
@@ -27,10 +27,10 @@
     "setup_requires": ["reentry"],
     "reentry_register": true,
     "install_requires": [
-        "aiida >= 0.9"
+        "aiida >= 0.11.0"
     ],
     "extras_require": {
-        "dev_precommit": [
+        "pre-commit": [
             "pre-commit",
             "yapf",
             "prospector",
