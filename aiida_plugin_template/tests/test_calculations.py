@@ -9,7 +9,7 @@ from aiida.backends.profile import BACKEND_DJANGO, BACKEND_SQLA
 
 
 def get_backend():
-    if os.environ.get('TEST_BACKEND') == BACKEND_SQLA:
+    if os.environ.get('TEST_AIIDA_BACKEND') == BACKEND_SQLA:
         return BACKEND_SQLA
     return BACKEND_DJANGO
 
@@ -17,8 +17,8 @@ def get_backend():
 class TestMultiply(PluginTestCase):
 
     # load the backend to be tested from the environment variable:
-    # TEST_BACKEND=django python -m unittest discover
-    # TEST_BACKEND=sqlalchemy python -m unittest discover
+    # TEST_AIIDA_BACKEND=django python -m unittest discover
+    # TEST_AIIDA_BACKEND=sqlalchemy python -m unittest discover
     BACKEND = get_backend()
 
     def get_localhost(self):

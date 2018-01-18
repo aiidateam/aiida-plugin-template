@@ -56,7 +56,7 @@ before_script:
     #- if [ "$TEST_TYPE" == "tests" ] ; then .travis-data/set_daemon_times.py $TEST_AIIDA_BACKEND ; fi
     #- .travis-data/before_script.sh
 
-script: .travis-data/test_script.sh
+script: .travis-data/script.sh
 
 git:
   depth: 3
