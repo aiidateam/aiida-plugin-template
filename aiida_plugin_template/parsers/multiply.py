@@ -1,15 +1,26 @@
 # -*- coding: utf-8 -*-
-
+import json
 from aiida.parsers.parser import Parser
+from aiida.parsers.exceptions import OutputParsingError
 from aiida.orm.data.parameter import ParameterData
 
-import json
-
+from aiida.orm import CalculationFactory
+MultiplyCalculation = CalculationFactory('template.multiply')
 
 class MultiplyParser(Parser):
     """
     Parser class for parsing output of multiplication.
     """
+
+    def __init__(self, calculation):
+        """
+        Initialize Parser instance
+        """
+        super(MultiplyParser, self).__init__(calculation)
+
+        # check for valid input
+        if not isinstance(calculation, MultiplyCalculation):
+            raise OutputParsingError("Can only parse MultiplyCalculation")
 
     # pylint: disable=protected-access
     def parse_with_retrieved(self, retrieved):

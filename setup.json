@@ -8,7 +8,7 @@
     "classifiers": [
         "Programming Language :: Python"
     ],
-    "version": "0.1.0",
+    "version": "0.2.0",
     "entry_points": {
         "aiida.calculations": [
             "template.multiply = aiida_plugin_template.calculations.multiply:MultiplyCalculation"
@@ -19,18 +19,18 @@
         "aiida.data": [
             "template.factors = aiida_plugin_template.data.multiply:MultiplyParameters"
         ],
-        "console_scripts": [
-            "aiida-template-factors = aiida_plugin_template.console_scripts.data_cli:cli"
+        "aiida.cmdline.data": [
+            "template.factors = aiida_plugin_template.data.data_cli:cli"
         ]
     },
     "scripts": ["examples/cli.py"],
     "setup_requires": ["reentry"],
     "reentry_register": true,
     "install_requires": [
-        "aiida >= 0.9"
+        "aiida >= 0.11.0"
     ],
     "extras_require": {
-        "dev_precommit": [
+        "pre-commit": [
             "pre-commit",
             "yapf",
             "prospector",

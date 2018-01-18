@@ -91,6 +91,7 @@ class MultiplyCalculation(JobCalculation):
         calcinfo.retrieve_list = [self._OUTPUT_FILE_NAME]
 
         codeinfo = CodeInfo()
+        # will call ./code.py in.json out.json
         codeinfo.cmdline_params = [
             self._INPUT_FILE_NAME, self._OUTPUT_FILE_NAME
         ]
