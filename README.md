@@ -2,11 +2,12 @@
 
 AiiDA plugin template for testing and gettings started with development
 
-* can be pip-installed from source with no dependencies except for aiida 0.8 (or later)
+* can be pip-installed from source with no dependencies except for aiida
 * can be run on a local machine with direct scheduler for easy testing
 * includes a simple regression test (submitting a calculation)
 * comes with Travis-CI configuration - just enable it to run tests at every commit
-* documentation on [Read the Docs](http://aiida-plugin-template.readthedocs.io/en/latest/)
+* documentation ready for [Read the Docs](http://aiida-plugin-template.readthedocs.io/en/latest/)
+* listed on the [AiiDA plugin registry](http://aiidateam.github.io/aiida-registry)
 
 Please see the 
 [quickstart guide](http://aiida-core.readthedocs.io/en/latest/developer_guide/plugins/quickstart.html)
