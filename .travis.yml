@@ -1,4 +1,3 @@
-# Next two to activate the beta Ubuntu Trusty machine without sudo
 language: python
 python:
 - "2.7"
@@ -7,7 +6,6 @@ cache: pip
 
 services:
 - postgresql
-- docker
 
 addons:
   postgresql: "9.4"
@@ -23,35 +21,15 @@ addons:
     - dvipng
     - dvidvi
 
-#before_install:
-#    # This is needed for the SSH tests (being able to ssh to localhost)
-#    # And will also be used for the docker test
-#    - ssh-keygen -t rsa -N "" -f "${HOME}/.ssh/id_rsa"
-#    - cp "${HOME}/.ssh/id_rsa.pub" "${HOME}/.ssh/authorized_keys"
-#    - ssh-keyscan -H localhost >> "${HOME}/.ssh/known_hosts"
-#
-#    # Build the docker image if needed
-#    - .travis-data/before_install.sh
-
 install:
-# Upgrade pip setuptools and wheel to be able to run the next command
+# Upgrade pip setuptools and wheel
 - pip install -U pip wheel setuptools
-# Install AiiDA with some optional dependencies
 - pip install .[precommit,testing]
 - reentry scan -r aiida
 
 env:
 - TEST_AIIDA_BACKEND=django
 - TEST_AIIDA_BACKEND=sqlalchemy
-
-
-before_script:
-#- .travis-data/setup_profiles.sh
-# make the time between tests shorter to speed-up tests
-# This script might need to be adapted when changing the logic
-# of the daemon loops or the schema of the config.json file
-#- if [ "$TEST_TYPE" == "tests" ] ; then .travis-data/set_daemon_times.py $TEST_AIIDA_BACKEND ; fi
-#- .travis-data/before_script.sh
 
 script: .travis-data/script.sh
 
