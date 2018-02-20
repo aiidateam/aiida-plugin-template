@@ -35,6 +35,9 @@
             "yapf",
             "prospector",
             "pylint"
+        ],
+        "docs": [
+            "sphinx"
         ]
     }
 }
