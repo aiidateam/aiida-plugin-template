@@ -2,22 +2,28 @@
 
 AiiDA plugin template for testing and gettings started with development
 
-* can be pip-installed from source with no dependencies except for aiida 0.8 (or later)
+* can be pip-installed from source with no dependencies except for aiida
 * can be run on a local machine with direct scheduler for easy testing
+* includes a basic regression test (submitting a calculation)
+* comes with [Travis CI](https://travis-ci.org) configuration - just enable it to run tests at every commit
+* pre-commit hook configuration to sanitize format and check for syntax errors (enable by `pre-commit install`)
+* documentation ready for [Read the Docs](http://aiida-plugin-template.readthedocs.io/en/latest/)
+* listed on the [AiiDA plugin registry](http://aiidateam.github.io/aiida-registry)
 
-# Documentation
-The documentation for this package can be found on Read the Docs at 
-http://aiida-plugin-template.readthedocs.io/en/latest/
+Please see the 
+[quickstart guide](http://aiida-core.readthedocs.io/en/latest/developer_guide/plugins/quickstart.html)
+for step-by-step instructions on how to develop your new AiiDA plugin using this template.
 
 # Installation
 
 ```shell
-$ git clone https://github.com/aiidateam/aiida-plugin-template aiida-plugin-template
-$ cd aiida-plugin-template
-$ pip install -e .  # also installs aiida, if missing (but not postgres)
-$ reentry scan -r aiida  
-$ verdi quicksetup  # better to set up a new profile
-$ verdi calculation plugins  # should now show template.multiply
+git clone https://github.com/aiidateam/aiida-plugin-template aiida-plugin-template
+cd aiida-plugin-template
+pip install -e .  # also installs aiida, if missing (but not postgres)
+#pip install -e .[precommit,testing] # install extras for more features
+reentry scan -r aiida  
+verdi quicksetup  # better to set up a new profile
+verdi calculation plugins  # should now show template.multiply
 ```
 
 # Usage
@@ -151,4 +157,3 @@ $ verdi data parameter show 26
 }
 
 ```
-
