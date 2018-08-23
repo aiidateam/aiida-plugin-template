@@ -1,5 +1,9 @@
 # aiida-plugin-template
 
+
+**WARNING:** This repository is **outdated** and no longer maintained.
+Please use the [**AiiDA plugin cutter**](https://github.com/aiidateam/aiida-plugin-cutter) for new plugin development.
+
 AiiDA plugin template for testing and gettings started with development
 
 * can be pip-installed from source with no dependencies except for aiida
